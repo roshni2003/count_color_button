@@ -16,8 +16,9 @@ const Count = () => {
   const [greenCount, setGreenCount] = useState(0);
   const [purpleCount, setPurpleCount] = useState(0);
 
-  const changeColor = newColor => {
+  const changeColor = (newColor, countSetter) => {
     setColor(newColor);
+    countSetter(prevCount => prevCount + 1);
   };
 
   useEffect(() => {
@@ -28,10 +29,10 @@ const Count = () => {
     <center>
       <div id="box"></div>
       <br />
-      <BlueBtn click={changeColor} />
-      <RedBtn click={changeColor} />
-      <GreenBtn click={changeColor} />
-      <PurpleBtn click={changeColor} />
+      <BlueBtn click={() => changeColor("blue", setBlueCount)} />
+      <RedBtn click={() => changeColor("red", setRedCount)} />
+      <GreenBtn click={() => changeColor("green", setGreenCount)} />
+      <PurpleBtn click={() => changeColor("purple", setPurpleCount)} />
 
       <BlueCount count={blueCount} />
       <RedCount count={redCount} />
@@ -42,4 +43,5 @@ const Count = () => {
 };
 
 export default Count;
+
 
