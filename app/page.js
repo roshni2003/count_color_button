@@ -1,33 +1,44 @@
-"use client";
-import {useState,useEffect} from 'react';
-
-import Bluebtn from './Blue';
-import Redbtn from './Red';
-import Greenbtn from './Green';
-import Purplebtn from './Purple';
+"use client"
+import React, { useState, useEffect } from 'react';
+import BlueBtn from './Blue';
+import RedBtn from './Red';
+import GreenBtn from './Green';
+import PurpleBtn from './Purple';
+import BlueCount from './BlueCount';
+import RedCount from './RedCount';
+import GreenCount from './GreenCount';
+import PurpleCount from './PurpleCount';
 
 const Count = () => {
-    const [color,setColor] = useState ("white")
-    const click = color => {
-        setColor(color)
-    }
-    useEffect(()=>{
-        document.body.style.backgroundColor=color
-    },[])
-    return (
-        <>
-        <center>
-        <div id = "box"></div>
-        <br></br>
-        <Bluebtn 
-            
-        />
-        <Redbtn />
-        <Greenbtn />
-        <Purplebtn />
-        </center>
-        </>
-    )
+  const [color, setColor] = useState("white");
+  const [blueCount, setBlueCount] = useState(0);
+  const [redCount, setRedCount] = useState(0);
+  const [greenCount, setGreenCount] = useState(0);
+  const [purpleCount, setPurpleCount] = useState(0);
+
+  const changeColor = newColor => {
+    setColor(newColor);
+  };
+
+  useEffect(() => {
+    document.getElementById("box").style.backgroundColor = color;
+  }, [color]);
+
+  return (
+    <center>
+      <div id="box"></div>
+      <br />
+      <BlueBtn click={changeColor} />
+      <RedBtn click={changeColor} />
+      <GreenBtn click={changeColor} />
+      <PurpleBtn click={changeColor} />
+
+      <BlueCount count={blueCount} />
+      <RedCount count={redCount} />
+      <GreenCount count={greenCount} />
+      <PurpleCount count={purpleCount} />
+    </center>
+  );
 };
 
 export default Count;
